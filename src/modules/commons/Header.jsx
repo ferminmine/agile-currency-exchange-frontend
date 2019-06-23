@@ -1,14 +1,16 @@
 import React from 'react';
 import withStyles from 'react-jss';
+import Menu from './Menu';
 
 const styles = {
   headerContainer: {
     display: 'flex',
-    justifyContent: 'center'
+    flexDirection: 'column',
+    paddingLeft: '10%',
+    paddingRight:' 10%'
   },
   headerImage: {
     height: '13em',
-    width: '80%'
   },
   '@media (max-width: 650px)': {
     headerImage: {
@@ -23,6 +25,7 @@ class Header extends React.Component {
     return (
       <div className={classes.headerContainer}>
         <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--qwv7ozuo--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://thepracticaldev.s3.amazonaws.com/i/17agn4hvbtp33fmjuelc.png" alt="App Header" className={classes.headerImage} />
+        <Menu />
       </div>
     );
   };
