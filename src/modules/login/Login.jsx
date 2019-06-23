@@ -1,6 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import withStyles from 'react-jss';
+import { push } from 'connected-react-router';
+import Swal from 'sweetalert2';
 import styles from './LoginStyles';
+import { attemptUserLogin } from '../../utils/ApiClient';
+
 
 class Login extends React.Component {
   state = {
@@ -12,8 +18,32 @@ class Login extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  attemptLogin = event => {
+  sweetAlertLoginMessage = () => ({
+    showCancelButton: false,
+    confirmButtonText: 'Continue',
+    allowOutsideClick: false
+  })
 
+  attemptLogin = async () => {
+    const { username, password } = this.state
+    const token = await attemptUserLogin(username, password);
+    const sweetAlertLoginMessage = this.sweetAlertLoginMessage();
+    if (token) {
+      await Swal.fire({
+        ...sweetAlertLoginMessage,
+        title: 'Welcome back!',
+        text: 'You just successfully logged in. We are happy to see you again!',
+        type: 'success'
+      });
+      this.props.push('/');
+    } else {
+      await Swal.fire({
+        ...sweetAlertLoginMessage,
+        title: 'Error trying to Log In',
+        text: 'There has been an error while trying to log in. Please check your credentials or try again later.',
+        type: 'error'
+      });
+    }
   }
 
   render = () => {
@@ -43,4 +73,8 @@ class Login extends React.Component {
   };
 }
 
-export default withStyles(styles)(Login);
+
+export default compose(
+  withStyles(styles),
+  connect(null, { push })
+)(Login);
