@@ -1,21 +1,23 @@
 import axios from 'axios';
 
-const authorizationToken = () => localStorage.getItem('userAccessToken');
-
 const API_KEY = process.env.REACT_APP_API_KEY;
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const apiClient = axios.create({
-  timeout: 1500,
-  headers: {
-    Authorization: `Bearer ${authorizationToken()}`,
-    accept: 'application/json'
-  }
-});
+const axiosGenerator = () =>
+  axios.create({
+    timeout: 1500,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('userAccessToken')}`,
+      accept: 'application/json'
+    }
+  });
 
-export const searchMovieOMDB = async (query, year = '', type = '', page = 1) => {
-  let url = `${SERVER_URL}/?s=${query}&type=${type}&y=${year}&page=${page}&apikey=${API_KEY}`;
-  return await apiClient.get(url);
+let apiClient = axiosGenerator();
+
+export const fetchUserInfoService = async userID => {
+  const url = `${SERVER_URL}/api/users/${userID}/`;
+  const response = await apiClient.get(url);
+  return response.data;
 };
 
 export const attemptUserLogin = async (username, password) => {
@@ -24,6 +26,7 @@ export const attemptUserLogin = async (username, password) => {
   try {
     token = await apiClient.post(url, { username, password });
     localStorage.setItem('userAccessToken', token.data.access);
+    apiClient = axiosGenerator();
     localStorage.setItem('userRefreshToken', token.data.refresh);
     return token.data.access;
   } catch (error) {

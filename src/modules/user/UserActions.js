@@ -1,6 +1,6 @@
-import { attemptLogin } from '../../utils/ApiClient';
+import { attemptLogin, fetchUserInfoService } from '../../utils/ApiClient';
 
-const USER_ACTION_TYPES = {
+export const USER_ACTION_TYPES = {
   FETCH_USER_INFO_PENDING: 'FETCH_USER_INFO_PENDING',
   FETCH_USER_INFO_FAILURE: 'FETCH_USER_INFO_FAILURE',
   FETCH_USER_INFO_SUCCESS: 'FETCH_USER_INFO_SUCCESS'
@@ -23,9 +23,9 @@ const setFetchUserInfoSuccess = data => ({
 export const fetchUserInfo = userId => async dispatch => {
   dispatch(setFetchUserInfoPending());
   try {
-    // let response = await fetchUserInfo(userId);
-    // dispatch(setFetchUserInfoSuccess(response.data));
+    const userInfo = await fetchUserInfoService(userId);
+    dispatch(setFetchUserInfoSuccess(userInfo));
   } catch (error) {
     dispatch(setFetchUserInfoFailure(error));
   }
-}
+};
