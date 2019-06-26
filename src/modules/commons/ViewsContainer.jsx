@@ -4,6 +4,7 @@ import PrivateRoute from './PrivateRoute';
 import Landing from '../landing/Landing';
 import Login from '../login/Login';
 import Signup from '../signup/Signup';
+import Account from '../account/Account';
 
 import NotFound from './NotFound';
 
@@ -12,6 +13,7 @@ const ViewsContainer = () => (
     <Route exact path='/' component={Landing} />
     <Route exact path='/login' component={Login} />
     <Route exact path='/signup' component={Signup} />
+    <PrivateRoute exact path='/account' component={Account} />
     <PrivateRoute exact path='/secret' component={Landing} />
     <Route component={NotFound} />
   </Switch>
