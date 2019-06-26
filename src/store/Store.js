@@ -6,6 +6,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
 import userReducer from '../modules/user/UserReducer';
+import currenciesReducer from '../modules/currencies/CurrenciesReducer';
 
 export const history = createBrowserHistory();
 
@@ -18,6 +19,7 @@ const persistConfig = {
 
 const allReducers = combineReducers({
   user: userReducer,
+  currencies: currenciesReducer,
   router: connectRouter(history),
 });
 
