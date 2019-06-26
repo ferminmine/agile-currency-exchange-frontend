@@ -1,9 +1,11 @@
 import axios from 'axios';
+import { push } from 'connected-react-router';
+import store, { resetApp } from '../store/Store';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
-const axiosGenerator = () =>
-  axios.create({
+const axiosGenerator = () => {
+  const axiosInstance = axios.create({
     timeout: 1500,
     headers: {
       Authorization:
@@ -12,6 +14,16 @@ const axiosGenerator = () =>
       accept: 'application/json'
     }
   });
+  axiosInstance.interceptors.response.use(null, error => {
+    if (error.response.status === 401) {
+      localStorage.removeItem('userAccessToken');
+      store.dispatch(resetApp);
+      store.dispatch(push('/login'));
+    }
+    return Promise.reject(error);
+  });
+  return axiosInstance;
+};
 
 let apiClient = axiosGenerator();
 
@@ -32,6 +44,16 @@ export const registerUserService = async user => {
     const url = `${SERVER_URL}/api/users/`;
     const response = await apiClient.post(url, user);
     return response;
+  } catch (error) {
+    return { errors: error.response.data };
+  }
+};
+
+export const fetchAccountInfoService = async accountID => {
+  try {
+    const url = `${SERVER_URL}/api/accounts/${accountID}/`;
+    const response = await apiClient.get(url);
+    return response.data;
   } catch (error) {
     return { errors: error.response.data };
   }
