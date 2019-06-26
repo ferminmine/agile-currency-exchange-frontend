@@ -33,8 +33,11 @@ export default {
     color: '#2f9ad4',
     fontWeight: 500
   },
+  useDescription: {
+    width: '80%'
+  },
   howItWorks: {
-    marginTop: '2em',
+    marginTop: '2em'
   },
   howItWorksTitle: {
     color: '#6788bb',

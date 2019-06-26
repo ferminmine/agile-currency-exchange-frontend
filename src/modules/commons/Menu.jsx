@@ -12,20 +12,17 @@ class Menu extends React.Component {
     localStorage.removeItem('userAccessToken');
     localStorage.removeItem('userRefreshToken');
     this.props.resetApp();
-    this.goTo('/');
   }
 
-  goTo = page => this.props.push(page);
 
   render = () => {
-    const { classes, user } = this.props;
+    const { classes, user, push } = this.props;
     return (
       <div className={classes.menuContainer}>
-        <div className={classes.menuItem}>Home</div>
+        <div onClick={() => push('/')} className={classes.menuItem}>Home</div>
         { !user && (
-          <div className={classes.menuItem}>Sign Up</div>
+          <div onClick={() => this.props.push('/signup')} className={classes.menuItem}>Sign Up</div>
         )}
-        <div className={classes.menuItem}>About</div>
         <div className={classes.menuItemLeft}>
           { user ? (
             <React.Fragment>
@@ -37,7 +34,7 @@ class Menu extends React.Component {
               </div>
             </React.Fragment>
           ) : (
-            <div onClick={() => this.goTo('/login')} className={classes.menuItem}>
+            <div onClick={() => push('/login')} className={classes.menuItem}>
               Login
             </div>
           ) }

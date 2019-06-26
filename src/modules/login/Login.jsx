@@ -59,14 +59,14 @@ class Login extends React.Component {
         <div className={classes.formContainer}>
           <h2 className={classes.loginTitle}> Login </h2>
           <input
-            className={classes.loginInput}
+            className={classes.formInput}
             type="text"
             placeholder="Username"
             name="username"
             onChange={this.onInputChange}
           ></input>
           <input
-            className={classes.loginInput}
+            className={classes.formInput}
             type="password"
             placeholder="Password"
             name="password"

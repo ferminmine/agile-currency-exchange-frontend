@@ -5,15 +5,17 @@ const menuItemBase = {
 
 export default {
   menuContainer: {
-    backgroundColor: '#6788bb',
-    display: 'flex'
+    background: '#9bc8ff',
+    display: 'flex',
+    paddingLeft: '10%',
+    paddingRight: '10%'
   },
   menuItem: {
     ...menuItemBase,
     '&:hover': {
-      backgroundColor: '#8097ba',
+      backgroundColor: '#438de9',
       cursor: 'pointer',
-      transition: '0.3s background-color'
+      transition: '0.3s background-color',
     }
   },
   menuItemBase: {
