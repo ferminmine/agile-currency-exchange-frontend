@@ -23,6 +23,9 @@ class Menu extends React.Component {
         { !user && (
           <div onClick={() => this.props.push('/signup')} className={classes.menuItem}>Sign Up</div>
         )}
+        { user && (
+          <div onClick={() => this.props.push('/account')} className={classes.menuItem}> Account </div>
+        )}
         <div className={classes.menuItemLeft}>
           { user ? (
             <React.Fragment>
