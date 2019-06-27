@@ -6,8 +6,16 @@ import { push } from 'connected-react-router';
 import { resetApp } from '../../store/Store';
 import styles from './MenuStyles';
 import { getUserSelector } from '../user/UserSelectors';
+import PropTypes from 'prop-types';
 
 class Menu extends React.Component {
+
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    push: PropTypes.func.isRequired,
+    user: PropTypes.object,
+    resetApp: PropTypes.func.isRequired
+  };
 
   resetApp = () => {
     localStorage.removeItem('userAccessToken');
@@ -15,7 +23,6 @@ class Menu extends React.Component {
     this.props.resetApp();
     this.props.push('/');
   }
-
 
   render = () => {
     const { classes, user, push } = this.props;

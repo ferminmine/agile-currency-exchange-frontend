@@ -8,8 +8,17 @@ import { fetchAccountInfo } from './AccountActions';
 import styles from '../account/AccountStyles';
 import Swal from 'sweetalert2';
 import { withdrawMoneyFromAccountService } from '../../utils/ApiClient';
+import PropTypes from 'prop-types';
 
 class WithdrawMoney extends React.Component {
+
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    account: PropTypes.object,
+    user: PropTypes.object.isRequired,
+    fetchAccountInfo: PropTypes.func.isRequired
+  };
+
   withdrawMoney = () => {
     Swal.fire({
       title: 'Select Amount',

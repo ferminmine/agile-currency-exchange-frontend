@@ -1,4 +1,4 @@
-import { attemptLogin, fetchUserInfoService } from '../../utils/ApiClient';
+import { fetchUserInfoService } from '../../utils/ApiClient';
 
 export const USER_ACTION_TYPES = {
   FETCH_USER_INFO_PENDING: 'FETCH_USER_INFO_PENDING',

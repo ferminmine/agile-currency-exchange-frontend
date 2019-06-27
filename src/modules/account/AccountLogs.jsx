@@ -1,13 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose, bindActionCreators } from 'redux';
-import withStyles from 'react-jss';
-import styles from '../landing/LandingStyles';
 import { getAccountLogsSelector, getAccountSelector } from '../account/AccountSelectors';
 import { fetchAccountLogsInfo } from '../account/AccountActions';
 import { getUserSelector } from '../user/UserSelectors';
+import PropTypes from 'prop-types';
 
 class AccountLogs extends React.Component {
+
+  static propTypes = {
+    fetchAccountLogsInfo: PropTypes.func.isRequired,
+    accountLogs: PropTypes.array,
+    account: PropTypes.object,
+    user: PropTypes.object.isRequired
+  };
+
   componentDidMount = () => {
     this.props.fetchAccountLogsInfo(this.props.user.id);
   };
@@ -20,29 +27,33 @@ class AccountLogs extends React.Component {
   }
 
   render = () => {
-    const { classes, accountLogs, account } = this.props;
+    const { accountLogs, account } = this.props;
     return (
       <table>
-        <tr>
-          <th> Transaction Type </th>
-          <th> Value </th>
-          <th> Account New Value </th>
-        </tr>
-        {accountLogs &&
-          accountLogs.map(log => (
-            <tr>
-              <td> {log.transaction_type} </td>
-              <td>
-                {' '}
-                {log.transaction_type === 'income' && '+'} 
-                {log.transaction_type === 'withdraw' && '-'}
-                {log.transaction_type === 'transfer' && account && log.receiver_id === account.id && '+' }
-                {log.transaction_type === 'transfer' && account && log.receiver_id !== account.id && '-' }
-                {log.value_modified_sender}{' '}
-              </td>
-              <td> {log.transaction_type !== 'transfer' && log.account_new_value.toFixed(2)} </td>
-            </tr>
-          ))}
+        <thead>
+          <tr>
+            <th> Transaction Type </th>
+            <th> Value </th>
+            <th> Account New Value </th>
+          </tr>
+        </thead>
+        <tbody>
+          {accountLogs &&
+            accountLogs.map(log => (
+              <tr key={log.id}>
+                <td> {log.transaction_type} </td>
+                <td>
+                  {' '}
+                  {log.transaction_type === 'income' && '+'} 
+                  {log.transaction_type === 'withdraw' && '-'}
+                  {log.transaction_type === 'transfer' && account && log.receiver_id === account.id && '+' }
+                  {log.transaction_type === 'transfer' && account && log.receiver_id !== account.id && '-' }
+                  {log.value_modified_sender}{' '}
+                </td>
+                <td> {log.transaction_type !== 'transfer' && log.account_new_value.toFixed(2)} </td>
+              </tr>
+            ))}
+        </tbody>
       </table>
     );
   };
@@ -66,6 +77,5 @@ export default compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  ),
-  withStyles(styles)
+  )
 )(AccountLogs);

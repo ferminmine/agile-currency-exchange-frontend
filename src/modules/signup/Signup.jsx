@@ -7,8 +7,17 @@ import { fetchCurrencies } from '../currencies/CurrenciesActions';
 import { registerUserService } from '../../utils/ApiClient';
 import styles from './SignupStyles';
 import { push } from 'connected-react-router';
+import PropTypes from 'prop-types';
 
 class Signup extends React.Component {
+
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    currencies: PropTypes.array,
+    push: PropTypes.func.isRequired,
+    fetchCurrencies: PropTypes.func.isRequired
+  };
+
   state = {
     first_name: null,
     last_name: null,
@@ -67,7 +76,7 @@ class Signup extends React.Component {
 
             
               {Object.keys(errors).map(value => (
-                <div className={classes.errorMessage}>
+                <div key={value} className={classes.errorMessage}>
                   {' '}
                   <span className={classes.errorField}> {value}: </span> {errors[value]}{' '}
                 </div>
@@ -122,9 +131,12 @@ class Signup extends React.Component {
               name="password"
               onChange={this.onCurrencyChange}
             >
+              <option defaultValue>
+                  ----
+              </option>
               {currencies &&
                 currencies.map(currency => (
-                  <option value={currency.id}>
+                  <option key={currency.id} value={currency.id}>
                     {currency.code} - {currency.name}{' '}
                   </option>
                 ))}
