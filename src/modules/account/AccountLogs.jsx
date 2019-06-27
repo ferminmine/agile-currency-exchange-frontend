@@ -5,15 +5,22 @@ import withStyles from 'react-jss';
 import styles from '../landing/LandingStyles';
 import { getAccountLogsSelector, getAccountSelector } from '../account/AccountSelectors';
 import { fetchAccountLogsInfo } from '../account/AccountActions';
+import { getUserSelector } from '../user/UserSelectors';
 
 class AccountLogs extends React.Component {
   componentDidMount = () => {
     this.props.fetchAccountLogsInfo(this.props.user.id);
   };
 
+  componentDidUpdate = (prevProps) => {
+    const { account, user, fetchAccountLogsInfo } = this.props;
+    if (account && prevProps.account && account.balance !== prevProps.account.balance) {
+      fetchAccountLogsInfo(user.id);
+    }
+  }
+
   render = () => {
     const { classes, accountLogs, account } = this.props;
-    console.log(accountLogs);
     return (
       <table>
         <tr>
@@ -42,7 +49,7 @@ class AccountLogs extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user,
+  user: getUserSelector(state),
   account: getAccountSelector(state),
   accountLogs: getAccountLogsSelector(state)
 });

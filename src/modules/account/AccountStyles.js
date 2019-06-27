@@ -1,4 +1,15 @@
+import landingStyles from '../landing/LandingStyles';
+
 export default {
+  ...landingStyles,
+  useImage: {
+    ...landingStyles.useImage,
+    '&:hover': {
+      opacity: 0.8,
+      transition: '0.3s opacity',
+      cursor: 'pointer'
+    }
+  },
   accountContainer: {
     marginTop: '3em',
     color: '#5c5c5c'
