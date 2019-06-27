@@ -28,7 +28,7 @@ export default {
     height: '3em',
     marginTop: '2.5em',
     border: 0,
-    background: '#2f9cd6',
+    background: '#3c87e0',
     color: 'white',
     fontSize: '1.2em',
     boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',

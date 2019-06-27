@@ -63,9 +63,25 @@ export default {
     fontSize: '1.3em',
     fontWeight: 300
   },
+  accountActionsTitle: {
+    color: '#6788bb',
+    fontSize: '2.7em',
+    textAlign: 'center',
+    marginTop: '1em',
+    marginBottom: '1em'
+  },
   accountActionsContainer: {
     display: 'flex',
     justifyContent: 'space-around',
-    marginTop: '6em'
+    marginTop: '4em'
+  },
+  accountLogsContainer: {
+    width: '60%',
+    margin: '0 auto',
+    marginTop: '5em',
+    marginBottom: '5em'
+  },
+  accountLogsTitle: {
+    marginBottom: '1em'
   }
 };
