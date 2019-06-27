@@ -45,7 +45,7 @@ export const registerUserService = async user => {
     const response = await apiClient.post(url, user);
     return response;
   } catch (error) {
-    return Promise.reject(new Error({ errors: error.response.data }));
+    return { errors: error.response.data };
   }
 };
 

@@ -41,12 +41,11 @@ export default {
   },
   howItWorksTitle: {
     color: '#6788bb',
-    fontSize: '2.5em'
+    fontSize: '2em',
+    marginTop: '2em'
   },
-  '@media (max-width: 650px)': {
-    shipPlacementContainer: {
-      flexDirection: 'column',
-      alignItems: 'center'
-    }
+  howItWorksParagraph: {
+    fontSize: '1.2em',
+    fontWeight: 300
   }
 };

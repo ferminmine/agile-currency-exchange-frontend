@@ -10,8 +10,16 @@ import { fetchAccountInfo } from './AccountActions';
 import AccountLogs from './AccountLogs';
 import { getAccountSelector } from './AccountSelectors';
 import { getUserSelector } from '../user/UserSelectors';
+import PropTypes from 'prop-types';
 
 class Account extends React.Component {
+
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    fetchAccountInfo: PropTypes.func.isRequired,
+    account: PropTypes.object,
+    user: PropTypes.object.isRequired
+  };
 
   componentDidMount = () => {
     this.props.fetchAccountInfo(this.props.user.id);

@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 import styles from './LandingStyles';
 
 class Landing extends React.Component {
-  static propTypes = {};
+
+  static propTypes = {
+    classes: PropTypes.object.isRequired
+  };
 
   render = () => {
     const { classes } = this.props;
@@ -41,11 +44,13 @@ class Landing extends React.Component {
         </div>
 
         <div className={classes.howItWorks}>
-          <h1 className={classes.howItWorksTitle}>
+          <h2 className={classes.howItWorksTitle}>
             How it all works?
-          </h1>
-          <div className="">
-            
+          </h2>
+          <div className={classes.howItWorksParagraph}>
+            Our application it is very simple to use. You create an account and then you are ready to add, withdraw
+            and transfer the money from your account. We are very focused on simplicity so we made this app for you
+            to manage all these operations in the simplest way possible.
           </div>
         </div>
       </div>

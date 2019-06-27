@@ -8,8 +8,16 @@ import { fetchAccountInfo } from './AccountActions';
 import styles from '../account/AccountStyles';
 import Swal from 'sweetalert2';
 import { addMoneyToAccountService } from '../../utils/ApiClient';
+import PropTypes from 'prop-types';
 
 class AddMoney extends React.Component {
+
+  static propTypes = {
+    classes: PropTypes.object.isRequired,
+    account: PropTypes.object,
+    user: PropTypes.object.isRequired
+  };
+
   addMoney = () => {
     Swal.fire({
       title: 'Select Amount',

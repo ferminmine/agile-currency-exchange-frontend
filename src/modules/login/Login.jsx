@@ -10,8 +10,10 @@ import { fetchUserInfo } from '../user/UserActions';
 import PropTypes from 'prop-types';
 
 class Login extends React.Component {
+  
   static propTypes = {
-    push: PropTypes.func
+    push: PropTypes.func,
+    fetchUserInfo: PropTypes.func.isRequired
   };
 
   state = {
