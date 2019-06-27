@@ -35,7 +35,7 @@ export default {
     marginTop: '1.5em'
   },
   errorsBox: {
-    backgroundColor: 'white',
+    backgroundColor: '#f7f7f7',
     width: '30%',
     textAlign: 'center',
     paddingTop: '10px',

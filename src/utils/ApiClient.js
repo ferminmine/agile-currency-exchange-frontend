@@ -17,7 +17,7 @@ const axiosGenerator = () => {
   axiosInstance.interceptors.response.use(null, error => {
     if (error.response.status === 401) {
       localStorage.removeItem('userAccessToken');
-      store.dispatch(resetApp);
+      store.dispatch(resetApp());
       store.dispatch(push('/login'));
     }
     return Promise.reject(error);
@@ -49,9 +49,19 @@ export const registerUserService = async user => {
   }
 };
 
-export const fetchAccountInfoService = async accountID => {
+export const fetchAccountInfoService = async userID => {
   try {
-    const url = `${SERVER_URL}/api/accounts/${accountID}/`;
+    const url = `${SERVER_URL}/api/accounts/${userID}/`;
+    const response = await apiClient.get(url);
+    return response.data;
+  } catch (error) {
+    return { errors: error.response.data };
+  }
+};
+
+export const fetchAccountLogsInfoService = async userID => {
+  try {
+    const url = `${SERVER_URL}/api/account/${userID}/logs/`;
     const response = await apiClient.get(url);
     return response.data;
   } catch (error) {

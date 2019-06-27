@@ -7,6 +7,8 @@ import AddMoney from './AddMoney';
 import WithdrawMoney from './WithdrawMoney';
 import TransferMoney from './TransferMoney';
 import { fetchAccountInfo } from './AccountActions';
+import AccountLogs from './AccountLogs';
+import { getAccountSelector } from './AccountSelectors';
 
 class Account extends React.Component {
 
@@ -28,22 +30,30 @@ class Account extends React.Component {
 
         <div className={classes.financialDataRow}>
           <div className={classes.balanceBox}>
-              <div className={classes.balanceNumber}> { account.balance } </div>
-              <div className={classes.balanceMoneySymbol}> { account.currency.symbol } </div>
+              <div className={classes.balanceNumber}> { account && account.balance.toFixed(2) } </div>
+              <div className={classes.balanceMoneySymbol}> { account && account.currency.symbol } </div>
           </div>
 
           <div className={classes.currencyContainer}>
-            <div className={classes.currencyCode}> { account.currency.code } </div>
-            <div className={classes.currencyName}> { account.currency.name_plural } </div>
+            <div className={classes.currencyCode}> { account && account.currency.code } </div>
+            <div className={classes.currencyName}> { account && account.currency.name_plural } </div>
           </div>
 
 
         </div>
 
+        <div className={classes.accountActionsTitle}> 
+          Account Actions
+        </div>
         <div className={classes.accountActionsContainer}>
           <AddMoney />
           <WithdrawMoney />
           <TransferMoney />
+        </div>
+
+        <div className={classes.accountLogsContainer}>
+          <div className={`${classes.accountTitle} ${classes.accountLogsTitle}`}> Account Log </div>
+          <AccountLogs account={account} />
         </div>
       
       </div>
@@ -54,7 +64,7 @@ class Account extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.user.user,
-  account: state.account.account
+  account: getAccountSelector(state)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

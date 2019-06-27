@@ -8,7 +8,7 @@ const styles = {
     flexDirection: 'column',
   },
   headerImage: {
-    height: '13em',
+    height: '15em',
   },
   '@media (max-width: 650px)': {
     headerImage: {
