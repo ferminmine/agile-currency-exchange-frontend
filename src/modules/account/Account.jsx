@@ -9,6 +9,7 @@ import TransferMoney from './TransferMoney';
 import { fetchAccountInfo } from './AccountActions';
 import AccountLogs from './AccountLogs';
 import { getAccountSelector } from './AccountSelectors';
+import { getUserSelector } from '../user/UserSelectors';
 
 class Account extends React.Component {
 
@@ -25,8 +26,12 @@ class Account extends React.Component {
           Account Information
         </div>
         <div className={classes.accountSubTitle}>
-          Ownership: { user.username }
+          <strong> Ownership: </strong> { user && user.username }
         </div>
+        <div className={classes.accountSubTitle}>
+          <strong> Account ID: </strong> { account && account.id }
+        </div>
+        
 
         <div className={classes.financialDataRow}>
           <div className={classes.balanceBox}>
@@ -63,7 +68,7 @@ class Account extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user,
+  user: getUserSelector(state),
   account: getAccountSelector(state)
 })
 

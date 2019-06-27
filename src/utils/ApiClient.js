@@ -45,7 +45,7 @@ export const registerUserService = async user => {
     const response = await apiClient.post(url, user);
     return response;
   } catch (error) {
-    return { errors: error.response.data };
+    return Promise.reject(new Error({ errors: error.response.data }));
   }
 };
 
@@ -55,7 +55,7 @@ export const fetchAccountInfoService = async userID => {
     const response = await apiClient.get(url);
     return response.data;
   } catch (error) {
-    return { errors: error.response.data };
+    return Promise.reject(new Error({ errors: error.response.data }));
   }
 };
 
@@ -65,7 +65,7 @@ export const fetchAccountLogsInfoService = async userID => {
     const response = await apiClient.get(url);
     return response.data;
   } catch (error) {
-    return { errors: error.response.data };
+    return Promise.reject(new Error({ errors: error.response.data }));
   }
 };
 
@@ -80,5 +80,38 @@ export const attemptUserLogin = async (username, password) => {
     return token.data.access;
   } catch (error) {
     return token;
+  }
+};
+
+export const addMoneyToAccountService = async (accountID, value) => {
+  try {
+    const url = `${SERVER_URL}/api/accounts/add-money/${accountID}/`;
+    const response = await apiClient.post(url, { value_to_add: value });
+    return response.data;
+  } catch (error) {
+    return Promise.reject(new Error({ errors: error.response.data }));
+  }
+};
+
+export const withdrawMoneyFromAccountService = async (accountID, value) => {
+  try {
+    const url = `${SERVER_URL}/api/accounts/withdraw-money/${accountID}/`;
+    const response = await apiClient.post(url, { value_to_withdraw: value });
+    return response.data;
+  } catch (error) {
+    return Promise.reject(new Error({ errors: error.response.data }));
+  }
+};
+
+export const transferMoneyToAccountService = async (accountID, value, accountToTransferID) => {
+  try {
+    const url = `${SERVER_URL}/api/accounts/transfer-money/${accountID}/`;
+    const response = await apiClient.post(url, {
+      value_to_transfer: value,
+      account_to_transfer_id: accountToTransferID
+    });
+    return response.data;
+  } catch (error) {
+    return Promise.reject(new Error({ errors: error.response.data }));
   }
 };

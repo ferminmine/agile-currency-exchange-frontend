@@ -5,6 +5,7 @@ import withStyles from 'react-jss';
 import { push } from 'connected-react-router';
 import { resetApp } from '../../store/Store';
 import styles from './MenuStyles';
+import { getUserSelector } from '../user/UserSelectors';
 
 class Menu extends React.Component {
 
@@ -12,6 +13,7 @@ class Menu extends React.Component {
     localStorage.removeItem('userAccessToken');
     localStorage.removeItem('userRefreshToken');
     this.props.resetApp();
+    this.props.push('/');
   }
 
 
@@ -48,7 +50,7 @@ class Menu extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user
+  user: getUserSelector(state)
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
