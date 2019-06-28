@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landing Component Test matches the snapshot 1`] = `
+<div>
+  <div
+    className="Landing-use-0-1-1"
+  >
+    <h1
+      className="Landing-landingTitle-0-1-2"
+    >
+      Use our digital service for
+    </h1>
+    <div
+      className="Landing-useGrid-0-1-3"
+    >
+      <div
+        className="Landing-useElement-0-1-5"
+      >
+        <img
+          alt=""
+          className="Landing-useImage-0-1-4"
+          src="/svg/001-bank.svg"
+        />
+        <div
+          className="Landing-useTitle-0-1-6"
+        >
+           Create an account
+        </div>
+        <div
+          className="Landing-useDescription-0-1-7"
+        >
+          You can create an account in the currency you choose.
+        </div>
+      </div>
+      <div
+        className="Landing-useElement-0-1-5"
+      >
+        <img
+          alt=""
+          className="Landing-useImage-0-1-4"
+          src="/svg/004-budget.svg"
+        />
+        <div
+          className="Landing-useTitle-0-1-6"
+        >
+           Trust us with your money 
+        </div>
+        <div
+          className="Landing-useDescription-0-1-7"
+        >
+          You can transfer your money to your account and it will be safe with us.
+        </div>
+      </div>
+      <div
+        className="Landing-useElement-0-1-5"
+      >
+        <img
+          alt=""
+          className="Landing-useImage-0-1-4"
+          src="/svg/014-dollar-bill.svg"
+        />
+        <div
+          className="Landing-useTitle-0-1-6"
+        >
+           Transfer your money 
+        </div>
+        <div
+          className="Landing-useDescription-0-1-7"
+        >
+          You can transfer your money to other people in a secure way.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="Landing-howItWorks-0-1-8"
+  >
+    <h2
+      className="Landing-howItWorksTitle-0-1-9"
+    >
+      How it all works?
+    </h2>
+    <div
+      className="Landing-howItWorksParagraph-0-1-10"
+    >
+      Our application it is very simple to use. You create an account and then you are ready to add, withdraw and transfer the money from your account. We are very focused on simplicity so we made this app for you to manage all these operations in the simplest way possible.
+    </div>
+  </div>
+</div>
+`;

@@ -11,7 +11,7 @@ const currenciesReducer = (state = defaultState, action) => {
     case CURRENCIES_ACTION_TYPES.FETCH_CURRENCIES_SUCCESS:
       return {
         ...state,
-        isFetching: true,
+        isFetching: false,
         currencies: action.payload
       };
     case CURRENCIES_ACTION_TYPES.FETCH_CURRENCIES_PENDING:
