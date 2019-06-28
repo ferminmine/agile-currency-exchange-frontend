@@ -11,7 +11,7 @@ const userReducer = (state = defaultState, action) => {
     case USER_ACTION_TYPES.FETCH_USER_INFO_SUCCESS:
       return {
         ...state,
-        isFetching: true,
+        isFetching: false,
         user: action.payload
       };
     case USER_ACTION_TYPES.FETCH_USER_INFO_PENDING:

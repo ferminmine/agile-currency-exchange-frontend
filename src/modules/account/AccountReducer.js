@@ -11,7 +11,7 @@ const accountReducer = (state = defaultState, action) => {
     case ACCOUNT_ACTION_TYPES.FETCH_ACCOUNT_INFO_SUCCESS:
       return {
         ...state,
-        isFetching: true,
+        isFetching: false,
         account: action.payload
       };
     case ACCOUNT_ACTION_TYPES.FETCH_ACCOUNT_INFO_PENDING:
